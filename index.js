@@ -33,7 +33,7 @@ console.log(getFinals(fifaData));
 /* Task 3: Implement a higher-order function called `getYears` that accepts the callback function `getFinals`, and returns an array called `years` containing all of the years in the dataset */
 
 function getYears(cb) {
-    const years = cb(fifaData).map(item => item.Year);
+    const years = cb(fifaData).map(banana => banana.Year);
     return years;
 };
 
@@ -62,21 +62,23 @@ Parameters:
  * callback function getYears
  */
 
-function getWinnersByYear(/* code here */) {
-
+function getWinnersByYear(arr1, arr2) {
+    for (let i = 0; i < arr1.length; i++){
+        console.log(`In ${arr1[i]}, ${arr2[i]} won the world cup!`)
+    }
 };
 
-getWinnersByYear();
+getWinnersByYear(getYears(getFinals), getWinners(getFinals));
 
 /* Task 6: Write a function called `getAverageGoals` that accepts a parameter `data` and returns the the average number of home team goals and away team goals scored per match (Hint: use .reduce and do this in 2 steps) */
 
-function getAverageGoals(/* code here */) {
+function getAverageGoals(data) {
+    let homeAverage = data.reduce((accumulator, item) => accumulator + item["Home Team Goals"], 0) / data.length;
+    let awayAverage = data.reduce((accumulator, item) => accumulator + item["Away Team Goals"], 0) / data.length;
+    return { homeAverage, awayAverage };
+}
 
-    /* code here */
-
-};
-
-getAverageGoals();
+console.log(getAverageGoals(fifaData));
 
 /// STRETCH 🥅 //
 
